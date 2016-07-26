@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Render template
 @app.route('/')
 def index():
-  return render_template('index.html', title='Hello, World')
+  return render_template('home.html', title='Hello, World')
 
 # URL parameter
 @app.route('/user/<username>', methods=['GET', 'POST'])
