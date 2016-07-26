@@ -25,6 +25,5 @@ def grant_achievement():
   assert request.form['thing']
   return 'Hi'
 
-
 if __name__ == "__main__":
   app.run()
