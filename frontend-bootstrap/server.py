@@ -6,6 +6,8 @@
 @author Christopher Su
 """
 
+import argparse
+
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
@@ -26,4 +28,9 @@ def grant_achievement():
   return 'Hi'
 
 if __name__ == "__main__":
-  app.run()
+  parser = argparse.ArgumentParser(description='The Achieve web server.')
+  parser.add_argument('--debug', dest='debug', action='store_true')
+  parser.set_defaults(debug=False)
+  args = parser.parse_args()
+
+  app.run(debug=args.debug)
