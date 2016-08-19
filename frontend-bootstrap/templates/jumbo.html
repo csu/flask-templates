@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block body %}
+<div class="container" style="margin-top: 40px;">
+  <div class="jumbotron">
+    <div style="text-align: left;">
+      {% if jumbo_title %}<h2>{{ jumbo_title }}</h2>{% endif %}
+      {% block jumbo_body %}{% endblock %}
+      {{ content }}
+      <br><br>
+    </div>
+  </div>
+</div>
+{% endblock %}
