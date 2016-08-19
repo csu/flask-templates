@@ -48,6 +48,12 @@ def grant_achievement():
   assert request.form['thing']
   return 'Hi'
 
+# Favicon
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+        'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='The Achieve web server.')
   parser.add_argument('--debug', dest='debug', action='store_true')
