@@ -1,0 +1,12 @@
+{
+  "name": "template",
+  "parse": [
+    "PROJECT-README"
+  ],
+  "discard": [
+    "template.json"
+  ],
+  "move": [
+    { "PROJECT-README": "README.md" },
+  ]
+}
