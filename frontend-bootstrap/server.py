@@ -10,6 +10,7 @@ import argparse
 
 from flask import Flask, request, render_template
 app = Flask(__name__)
+app.config['SITE_TITLE'] = 'Website Title'
 
 # Render template
 @app.route('/')

@@ -1,14 +1,72 @@
 <!doctype html>
 <head>
-  <title>{{ title }}</title>
-  
+  <title>{% if title %}{{ title }} - {% endif %}{{config.SITE_TITLE}}</title>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  
+  {% block custom_head %}{% endblock %}
 </head>
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/" style="color: #e6e6e6;">{{config.SITE_TITLE}}</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+          <div class="navbar-form navbar-right">
+            {% if request.cookies.get('some_session') %}
+            {% set alias = request.cookies.get('some_session') -%}
+            <ul class="nav nav-pills">
+              <li><a href="/{{ some_session }}" class="nav-not-link">Sessioned</a></li>
+              <li><a href="/something">Something</a></li>
+              <li><a href="/else">Else</a></li>
+              <li><a href="/logout">Sign Out</a></li>
+            </ul>
+            {% else %}
+            <button class="btn btn-success" data-toggle="modal" data-target="#signInModel">Sign In</button>
+            {% endif %}
+          </div>
+      </div><!--/.navbar-collapse -->
+    </div>
+  </nav>
+
+  <div class="modal fade" id="signInModel" tabindex="-1" role="dialog" aria-labelledby="signInModelLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="signInModelLabel">Sign in to {{config.SITE_TITLE}}</h4>
+        </div>
+        <form action="/login" method="post">
+          <div class="modal-body">
+            <div class="alert alert-info" role="alert"><b>Note:</b> Check out this form.</div>
+              <p>What's your session value?</p>
+              <input type="text" name="alias">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <input type="submit" class="btn btn-primary" value="Submit"></input>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   {% block body %}{% endblock %}
 
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script>
+    $(function () { $("[data-toggle='popover']").popover(); });
+  </script>
 </body>
