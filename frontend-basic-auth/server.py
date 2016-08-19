@@ -9,7 +9,7 @@
 import argparse
 
 from functools import wraps
-from flask import Flask, request, render_template, Response
+from flask import Flask, request, render_template, Response, send_from_directory
 app = Flask(__name__)
 
 def check_auth(username, password):
