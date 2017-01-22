@@ -1,0 +1,19 @@
+# {{ cookiecutter.project_name }}
+
+{{ cookiecutter.project_short_description }}
+
+## Installation
+```
+install
+```
+
+## Usage
+```
+usage
+```
+
+## Contributing
+Pull requests and issues are welcome.
+
+### Maintainers
+* [{{ cookiecutter.full_name }}]({{ cookiecutter.author_website }}) ([{{ cookiecutter.github_username }}](https://github.com/{{ cookiecutter.github_username }}))
