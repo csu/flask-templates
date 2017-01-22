@@ -1,0 +1,10 @@
+{
+    "full_name": "Christopher Su",
+    "email": "hello@christopher.su",
+    "author_website": "https://christopher.su",
+    "github_username": "csu",
+    "project_name": "Project Name",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_short_description": "Does something.",
+    "release_date": "{% now 'local' %}"
+}
